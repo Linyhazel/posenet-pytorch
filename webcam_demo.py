@@ -15,8 +15,10 @@ args = parser.parse_args()
 
 
 def main():
+    device = torch.device("cpu")
+    
     model = posenet.load_model(args.model)
-    model = model.cuda()
+    model = model.to(device)#cuda()
     output_stride = model.output_stride
 
     cap = cv2.VideoCapture(args.cam_id)
@@ -30,7 +32,7 @@ def main():
             cap, scale_factor=args.scale_factor, output_stride=output_stride)
 
         with torch.no_grad():
-            input_image = torch.Tensor(input_image).cuda()
+            input_image = torch.Tensor(input_image).to(device)#cuda()
 
             heatmaps_result, offsets_result, displacement_fwd_result, displacement_bwd_result = model(input_image)
 
