@@ -45,6 +45,8 @@ def main():
         while no_of_frame < frame_count:
             no_of_frame += 1 # haven't implement pick frame, read frame one by one
             input_image, display_image, output_scale = posenet.read_cap(cap, scale_factor=args.scale_factor, output_stride=output_stride)
+            if input_image is None:
+                break
 
             with torch.no_grad():
                 input_image = torch.Tensor(input_image).to(device) ###
