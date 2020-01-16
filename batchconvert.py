@@ -19,7 +19,7 @@ args = parser.parse_args()
 
 def main():
     model = posenet.load_model(args.model)
-    device = torch.device("cpu") ###
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu') ###
     model = model.to(device) ###
     output_stride = model.output_stride
 
