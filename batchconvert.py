@@ -39,6 +39,8 @@ def main():
         
         cap = cv2.VideoCapture(f)
         frame_count = cap.get(cv2.CAP_PROP_FRAME_COUNT)
+        width  = cap.get(cv2.CAP_PROP_FRAME_WIDTH)
+        height = cap.get(cv2.CAP_PROP_FRAME_HEIGHT)
         print('Total number of frames in this video is #%d' % frame_count)
         no_of_frame = 0
 
@@ -76,8 +78,8 @@ def main():
                      #   print('Keypoint %s, score = %f, coord = %s' % (posenet.PART_NAMES[ki], s, c))
 
                     for i in range(17):
-                        row.append(keypoint_coords[pi][i][0])
-                        row.append(keypoint_coords[pi][i][1])
+                        row.append(keypoint_coords[pi][i][0]/width)
+                        row.append(keypoint_coords[pi][i][1]/height)
 
                     csv_content.append(row)
         
