@@ -76,7 +76,7 @@ def main():
             keypoint_coords *= output_scale
 
             if not args.notxt:
-                print("Frame No.%s" % no_of_frame)
+                #print("Frame No.%s" % no_of_frame)
                 #print("Results for video: %s" % f)
                 for pi in range(len(pose_scores)): # there should be one pi only -> one person in the video
                     if pose_scores[pi] == 0.: # drop frames that movements cannot be recognized
